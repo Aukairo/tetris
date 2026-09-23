@@ -42,7 +42,7 @@ const ABILITIES: AbilityCardDef[] = [
     name: 'Sensor Glitch',
     cost: 50,
     icon: <EyeOff className="w-4 h-4 text-cyan-400" />,
-    desc: 'Blinds Laya-MLX vision for 2.0s',
+    desc: 'Blinds Laya-MLX vision for 4.0s',
     borderColor: 'border-cyan-500/40 hover:border-cyan-400',
     btnGlow: 'hover:glow-cyan bg-cyan-950/20 text-cyan-200',
   },
@@ -171,11 +171,10 @@ export const SaboteurDeck: React.FC<SaboteurDeckProps> = ({
               key={ability.id}
               disabled={!isUsable}
               onClick={() => onTriggerSabotage(ability.id)}
-              className={`relative flex items-center justify-between p-2.5 rounded-xl border transition-all text-left ${ability.borderColor} ${ability.btnGlow} ${
-                isUsable
+              className={`relative flex items-center justify-between p-2.5 rounded-xl border transition-all text-left ${ability.borderColor} ${ability.btnGlow} ${isUsable
                   ? 'cursor-pointer active:scale-[0.98]'
                   : 'opacity-50 cursor-not-allowed bg-slate-950/40 border-slate-800'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-center shrink-0">
