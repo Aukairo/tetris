@@ -1,0 +1,35 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String?       @unique
+  username     String
+  avatarUrl    String?
+  provider     String        // "google" | "github" | "guest"
+  providerId   String?       @unique
+  createdAt    DateTime      @default(now())
+  matches      MatchRecord[]
+}
+
+model MatchRecord {
+  id              String   @id @default(uuid())
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  guestSessionId  String?  // for unclaimed guest games
+  playerName      String   @default("Guest Saboteur")
+  aiScore         Int      // Inverted scoring: lower is better!
+  linesCleared    Int      @default(0)
+  piecesPlaced    Int      @default(0)
+  durationSeconds Float    @default(0)
+  sabotagesUsed   Int      @default(0)
+  completedEarly  Boolean  @default(false) // true if top-out forced before 180s timer
+  timeoutPenalty  Boolean  @default(false) // true if 180s expired before top-out
+  createdAt       DateTime @default(now())
+}

@@ -1,0 +1,6 @@
+fastapi>=0.115.0
+uvicorn>=0.30.0
+numpy>=1.26.0
+pydantic>=2.8.0
+laya-mlx>=0.2.0
+mlx>=0.16.0
